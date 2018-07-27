@@ -1,0 +1,1 @@
+version in ThisBuild := "{{cookiecutter.version}}"

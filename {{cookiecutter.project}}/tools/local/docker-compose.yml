@@ -1,0 +1,45 @@
+version: '3'
+services:
+  spark-master:
+    image: local/spark:{{cookiecutter.spark_version}}
+    command: spark-class org.apache.spark.deploy.master.Master --host spark-master
+    container_name: spark-master
+    environment:
+      - SPARK_CONF_DIR=/root/conf
+      - SPARK_PUBLIC_DNS=localhost
+    hostname: spark-master
+    networks:
+      - spark-network
+    ports:
+      - "4040:4040"
+      - "6066:6066"
+      - "7077:7077"
+      - "8080:8080"
+    volumes:
+      - ./conf/master:/root/conf
+      - ./data:/tmp/data
+      - ./workspace:/root/workspace
+  spark-worker:
+    image: local/spark:{{cookiecutter.spark_version}}
+    command: spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_CONF_DIR=/root/conf
+      - SPARK_WORKER_CORES=2
+      - SPARK_WORKER_MEMORY=1g
+      - SPARK_PUBLIC_DNS=localhost
+    networks:
+      - spark-network
+    ports:
+      - "8081"
+    volumes:
+      - ./conf/worker:/root/conf
+      - ./data:/tmp/data
+networks:
+  spark-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.238.0/24
