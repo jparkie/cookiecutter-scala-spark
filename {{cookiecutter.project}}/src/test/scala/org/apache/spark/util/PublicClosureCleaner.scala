@@ -12,7 +12,9 @@ object PublicClosureCleaner {
     * @param checkSerializable whether to verify that the closure is serializable after cleaning
     * @param cleanTransitively whether to clean enclosing closures transitively
     */
-  def clean(closure: AnyRef, checkSerializable: Boolean = true, cleanTransitively: Boolean = true): Unit = {
+  def clean(closure: AnyRef,
+            checkSerializable: Boolean = true,
+            cleanTransitively: Boolean = true): Unit = {
     ClosureCleaner.clean(closure, checkSerializable, cleanTransitively)
   }
 

@@ -17,7 +17,9 @@ trait LogsProxy extends Serializable {
 /**
   * A default implementation of [[LogsProxy]].
   */
-final class DefaultLogsProxy(val loggerName: String) extends LogsProxy with Logging {
+final class DefaultLogsProxy(val loggerName: String)
+    extends LogsProxy
+    with Logging {
 
   override protected def logName: String = {
     loggerName

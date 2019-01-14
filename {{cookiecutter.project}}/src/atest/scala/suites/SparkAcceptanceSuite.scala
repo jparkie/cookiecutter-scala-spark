@@ -12,10 +12,11 @@ import org.scalatest.GivenWhenThen
   *
   * @see [[https://github.com/testcontainers/testcontainers-scala]].
   */
-abstract class SparkAcceptanceSuite extends BaseSuiteLike
-  with SharedMiniCluster
-  with ForAllTestContainer
-  with GivenWhenThen {
+abstract class SparkAcceptanceSuite
+    extends BaseSuiteLike
+    with SharedMiniCluster
+    with ForAllTestContainer
+    with GivenWhenThen {
 
   @transient
   private var _spark: SparkSession = _

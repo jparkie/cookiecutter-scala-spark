@@ -12,7 +12,8 @@ trait LoggingCapture {
 
   final class TestAppenderSkeleton extends AppenderSkeleton {
 
-    val buffer: mutable.Buffer[LoggingEvent] = mutable.Buffer.empty[LoggingEvent]
+    val buffer: mutable.Buffer[LoggingEvent] =
+      mutable.Buffer.empty[LoggingEvent]
 
     override def append(event: LoggingEvent): Unit = {
       buffer.append(event)

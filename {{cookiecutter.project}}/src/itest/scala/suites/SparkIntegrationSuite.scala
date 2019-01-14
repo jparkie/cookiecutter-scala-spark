@@ -6,8 +6,9 @@ import org.apache.spark.sql.{SQLContext, SparkSession}
 /**
   * A test class to extend when writing integration tests with Spark.
   */
-abstract class SparkIntegrationSuite extends BaseSuiteLike
-  with SharedSparkContext {
+abstract class SparkIntegrationSuite
+    extends BaseSuiteLike
+    with SharedSparkContext {
 
   @transient
   private var _spark: SparkSession = _

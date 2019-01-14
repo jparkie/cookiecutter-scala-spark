@@ -12,16 +12,17 @@ import scala.io.Source
 /**
   * A base trait that features many batteries to aid writing tests.
   */
-trait BaseSuiteLike extends FunSuiteLike
-  with Matchers
-  with Checkers
-  with Inspectors
-  with Inside
-  with OptionValues
-  with EitherValues
-  with PrivateMethodTester
-  with MockitoSugar
-  with ArgumentMatchersSugar {
+trait BaseSuiteLike
+    extends FunSuiteLike
+    with Matchers
+    with Checkers
+    with Inspectors
+    with Inside
+    with OptionValues
+    with EitherValues
+    with PrivateMethodTester
+    with MockitoSugar
+    with ArgumentMatchersSugar {
 
   def getResourceAsInputStream(resourcePath: String): InputStream = {
     val currentClassLoader = Thread.currentThread().getContextClassLoader
@@ -38,7 +39,9 @@ trait BaseSuiteLike extends FunSuiteLike
   }
 
   def assertSparkSerializable(closure: AnyRef): Unit = {
-    noException should be thrownBy PublicClosureCleaner.clean(closure, cleanTransitively = false)
+    noException should be thrownBy PublicClosureCleaner.clean(
+      closure,
+      cleanTransitively = false)
   }
 
 }

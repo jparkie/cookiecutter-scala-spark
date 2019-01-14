@@ -18,7 +18,8 @@ trait MetricsProxy extends Serializable {
 /**
   * A default implementation of [[MetricsProxy]].
   */
-final class DefaultMetricsProxy(val metricRegistryName: String) extends MetricsProxy {
+final class DefaultMetricsProxy(val metricRegistryName: String)
+    extends MetricsProxy {
 
   @transient
   override lazy val metricRegistry: MetricRegistry = {
@@ -28,12 +29,14 @@ final class DefaultMetricsProxy(val metricRegistryName: String) extends MetricsP
       metricsSystem.registerSource(metricsSource)
     } catch {
       case _: Exception =>
-        // Do Nothing.
+      // Do Nothing.
     }
-    metricsSystem.getSourcesByName(metricRegistryName)
+    metricsSystem
+      .getSourcesByName(metricRegistryName)
       .headOption
       .map(actualMetricsSource => actualMetricsSource.metricRegistry)
-      .getOrElse(throw new IllegalStateException(s"Unable to get MetricRegistry for name: $metricRegistryName"))
+      .getOrElse(throw new IllegalStateException(
+        s"Unable to get MetricRegistry for name: $metricRegistryName"))
   }
 
   private class DefaultMetricsProxySource extends PublicSource {
