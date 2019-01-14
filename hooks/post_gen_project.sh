@@ -1,14 +1,35 @@
 #!/bin/bash
 
-echo "[cookiecutter-scala-spark][post_gen_project.sh]: Starting...."
+set -euo pipefail
+IFS=$'\n\t'
 
-# 1. Initialize Git Repository
-echo "[cookiecutter-scala-spark][post_gen_project.sh]: Setting up git repository...."
+#
+# Functions:
+#
+
+function echo_info() {
+	echo "[cookiecutter-scala-spark] INFO post_gen_project.sh - $1" >&1
+}
+
+
+#
+# Step 1:
+#
+
+echo_info "Initializing Git"
 git init
-git add .gitignore
+git add .
+git commit -n -m "Initial Commit"
 
-# 2. Install pre-commit
-echo "[cookiecutter-scala-spark][post_gen_project.sh]: Setting up pre-commit...."
+#
+# Step 2:
+#
+
+echo_info "Initializing Project"
 make init
 
-echo "[cookiecutter-scala-spark][post_gen_project.sh]: Done."
+#
+# Done:
+#
+
+echo_info "Done!"
