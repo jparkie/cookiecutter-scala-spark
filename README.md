@@ -51,9 +51,9 @@ spark_testing_base_version [0.10.0]:
 
 ### Dockerfile + Makefile + Jenkinsfile + docker-compose + JMH
 
-- A Dockerfile with Java 8, Scala 2.11, sbt 1.1, scalafmt 1.5.1, scalastyle 1.0.0, and pre-commit is provided to self-contain the project.
-- A Makefile is provided to execute various project commands within a Docker container.
-- A Jenkinsfile is provided with the following stages: Checkout, Pre-Commit, Clean, Build, Unit Test, Integration Test, Acceptance Test, Coverage, and Assembly.
+- A `Dockerfile` with Java 8, Scala 2.11, sbt 1.1, scalafmt 1.5.1, scalastyle 1.0.0, and pre-commit is provided to self-contain the project.
+- A `Makefile` is provided to execute various project commands within a Docker container.
+- A `Jenkinsfile` is provided with the following stages: Checkout, Pre-Commit, Clean, Build, Unit Test, Integration Test, Acceptance Test, Coverage, and Assembly.
 - A `docker-compose.yml` file is provided in `tools/local` to launch a standalone Apache Spark cluster.
 - A `benchmarks` folder is provided to run JMH benchmarks.
 
